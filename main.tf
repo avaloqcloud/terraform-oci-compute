@@ -96,8 +96,8 @@ resource "tls_private_key" "ssh_key" {
   rsa_bits  = 4096
 }
 
-resource "oci_identity_api_key" "user_api_key" {
-    #Required
-    key_value = tls_private_key.ssh_key.public_key_pem
-    user_id   = var.current_user_ocid
-}
+#resource "oci_identity_api_key" "user_api_key" {
+#    #Required
+#    key_value = tls_private_key.ssh_key.public_key_pem
+#    user_id   = var.current_user_ocid
+#}
