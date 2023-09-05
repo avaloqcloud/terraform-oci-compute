@@ -38,6 +38,11 @@ variable "vm_name" {
   description = "VM Name"
 }
 
+variable "region" {
+  type =        string
+  description = "OCI Region"
+}
+
 #variable "ssh_authorized_key" {
 #  type =        string
 #  description = "RSA public key in PEM format. It will added as authorized key for remote connection over SSH"
