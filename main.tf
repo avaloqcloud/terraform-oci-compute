@@ -1,6 +1,6 @@
 resource "oci_core_instance" "compute_instance" {
   availability_domain = var.availability_domain
-  compartment_id = var.compartment_ocid
+  compartment_id = var.compartment_id
   display_name = var.vm_name
   shape = var.shape_id
 
