@@ -49,14 +49,14 @@ resource "null_resource" "copy_private_key" {
 resource "oci_core_vcn" "compute_vcn" {
   #Required
   cidr_block     = "${lookup(local.network_cidrs, "vcn_cidr")}"
-  compartment_id = var.compartment_ocid
+  compartment_id = "${var.compartment_ocid}"
 
 }
 
 # https://www.terraform.io/docs/providers/oci/r/core_security_list.html
 resource "oci_core_security_list" "worker_node_sl" {
   #Required
-  compartment_id = var.compartment_id
+  compartment_id = "${var.compartment_ocid}"
   vcn_id         = "${oci_core_vcn.compute_vcn.id}"
 
   egress_security_rules {
@@ -76,7 +76,7 @@ resource "oci_core_security_list" "worker_node_sl" {
 resource "oci_core_subnet" "load_balancer_subnet" {
   #Required
   cidr_block        = "${lookup(local.network_cidrs, "load_balancer_subnet_cidr")}"
-  compartment_id    = var.compartment_ocid
+  compartment_id    = "${var.compartment_ocid}"
   security_list_ids = ["${oci_core_security_list.worker_node_sl.id}"]
   vcn_id            = "${oci_core_vcn.compute_vcn.id}"
 
