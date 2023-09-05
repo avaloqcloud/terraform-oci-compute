@@ -58,12 +58,12 @@ variable "vm_name" {
 #  description = "RSA Private key in PEM format. It will be will be required for authenticating OCI CLI running on compute_instance host."
 #}
 
-variable "user_id" {
-  type =        string
-  description= "The user's OCID must be set up to enable authentication via the OCI CLI."
-}
+#variable "user_id" {
+#  type =        string
+#  description= "The user's OCID must be set up to enable authentication via the OCI CLI."
+#}
 
-variable "tenancy_id" {
-  type =        string
-  description= "The Tenancy's OCID must be set up to enable authentication via the OCI CLI."
-}
+#variable "tenancy_id" {
+#  type =        string
+#  description= "The Tenancy's OCID must be set up to enable authentication via the OCI CLI."
+#}
