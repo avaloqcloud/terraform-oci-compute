@@ -48,15 +48,15 @@ variable "vm_name" {
 #  description = "SSH Private key in PEM format. The private key will be used for connecting to the VMs (compute_instance, ACP, OKE nodes) over SSH"
 #}
 
-variable "oci_cli_api_public_key" {
-  type =        string
-  description = "RSA Public key in PEM format. It will be configured as API key in OCI for authenticating OCI CLI running on compute_instance host."
-}
+#variable "oci_cli_api_public_key" {
+#  type =        string
+#  description = "RSA Public key in PEM format. It will be configured as API key in OCI for authenticating OCI CLI running on compute_instance host."
+#}
 
-variable "oci_cli_api_private_key" {
-  type =        string
-  description = "RSA Private key in PEM format. It will be will be required for authenticating OCI CLI running on compute_instance host."
-}
+#variable "oci_cli_api_private_key" {
+#  type =        string
+#  description = "RSA Private key in PEM format. It will be will be required for authenticating OCI CLI running on compute_instance host."
+#}
 
 variable "user_id" {
   type =        string
