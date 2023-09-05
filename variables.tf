@@ -1,7 +1,3 @@
-variable "compartment_id" {
-   description = "The compartment Id within the OCI (Oracle Cloud Infrastructure) tenancy"
-}
-
 variable "compartment_ocid" {
    description = "The compartment Id within the OCI (Oracle Cloud Infrastructure) tenancy"
 }
