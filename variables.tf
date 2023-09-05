@@ -30,3 +30,8 @@ variable "shape_id" {
 variable "vm_name" {
   description = "VM Name"
 }
+
+variable "public_subnet_id" {
+  type =        string
+  description = "OCID of public subnet in which to create a compute_instance host"
+}
