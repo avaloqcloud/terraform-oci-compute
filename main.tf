@@ -45,3 +45,45 @@ resource "null_resource" "copy_private_key" {
     destination = "~/.ssh/id_rsa.pem"
   } 
 }
+
+resource "oci_core_vcn" "compute_vcn" {
+  #Required
+  cidr_block     = "${lookup(local.network_cidrs, "vcn_cidr")}"
+  compartment_id = "${var.compartment_ocid}"
+
+}
+
+# https://www.terraform.io/docs/providers/oci/r/core_security_list.html
+resource "oci_core_security_list" "worker_node_sl" {
+  #Required
+  compartment_id = "${var.compartment_ocid}"
+  vcn_id         = "${oci_core_vcn.compute_vcn.id}"
+
+  egress_security_rules {
+    destination = "0.0.0.0/0"
+    protocol = "all" 
+  }
+
+  ingress_security_rules {
+    protocol = "all" 
+    source = "0.0.0.0/0"
+  }
+  #Optional
+  display_name = "worker node security list"
+}
+
+
+resource "oci_core_subnet" "load_balancer_subnet" {
+  #Required
+  cidr_block        = "${lookup(local.network_cidrs, "load_balancer_subnet_cidr")}"
+  compartment_id    = "${var.compartment_ocid}"
+  security_list_ids = ["${oci_core_security_list.worker_node_sl.id}"]
+  vcn_id            = "${oci_core_vcn.compute_vcn.id}"
+
+  #Optional
+  availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")}"
+  dhcp_options_id     = "${oci_core_vcn.compute_vcn.default_dhcp_options_id}"
+  display_name        = "load balancer subnet"
+  #dns_label           = "lb"
+}
+
