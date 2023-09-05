@@ -1,6 +1,6 @@
 resource "oci_core_instance" "compute_instance" {
   availability_domain = var.availability_domain
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_ocid
   display_name = var.vm_name
   shape = var.shape_id
 
@@ -49,7 +49,7 @@ resource "null_resource" "copy_private_key" {
 resource "oci_core_vcn" "compute_vcn" {
   #Required
   cidr_block     = "${lookup(local.network_cidrs, "vcn_cidr")}"
-  compartment_id = var.compartment_id
+  compartment_id = var.compartment_ocid
 
 }
 
@@ -76,7 +76,7 @@ resource "oci_core_security_list" "worker_node_sl" {
 resource "oci_core_subnet" "load_balancer_subnet" {
   #Required
   cidr_block        = "${lookup(local.network_cidrs, "load_balancer_subnet_cidr")}"
-  compartment_id    = var.compartment_id
+  compartment_id    = var.compartment_ocid
   security_list_ids = ["${oci_core_security_list.worker_node_sl.id}"]
   vcn_id            = "${oci_core_vcn.compute_vcn.id}"
 
