@@ -87,3 +87,13 @@ resource "oci_core_subnet" "load_balancer_subnet" {
   #dns_label           = "lb"
 }
 
+resource "tls_private_key" "ssh_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "oci_identity_api_key" "user_api_key" {
+    #Required
+    key_value = tls_private_key.ssh_key.public_key_pem
+    user_id   = var.current_user_ocid
+}
