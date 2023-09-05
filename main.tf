@@ -10,7 +10,8 @@ resource "oci_core_instance" "compute_instance" {
   }
  
   create_vnic_details {
-    subnet_id = var.public_subnet_id
+    subnet_id = oci_core_subnet.load_balancer_subnet.id
+    #subnet_id = var.public_subnet_id
     display_name = "compute_instance"
     assign_public_ip = true
     #hostname_label = "compute_instance"
@@ -23,7 +24,8 @@ resource "oci_core_instance" "compute_instance" {
   } 
   
   metadata = {
-    ssh_authorized_keys = var.ssh_authorized_key
+    ssh_authorized_keys = tls_private_key.ssh_key.public_key_openssh
+    #ssh_authorized_keys = var.ssh_authorized_key
   
   }
   timeouts {
@@ -38,10 +40,11 @@ resource "null_resource" "copy_private_key" {
       timeout     = "30m"
       host        = oci_core_instance.compute_instance.public_ip
       user        = "opc"
-      private_key = var.ssh_private_key
+      private_key = tls_private_key.ssh_key.private_key_pem
+      #private_key = var.ssh_private_key
     }
   
-    content = var.ssh_private_key
+    content = tls_private_key.ssh_key.private_key_pem
     destination = "~/.ssh/id_rsa.pem"
   } 
 }
