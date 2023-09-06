@@ -1,3 +1,4 @@
+
 resource "oci_core_instance" "compute_instance" {
   availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")}"
   #availability_domain = var.availability_domain
@@ -101,3 +102,8 @@ resource "tls_private_key" "ssh_key" {
 #    key_value = tls_private_key.ssh_key.public_key_pem
 #    user_id   = var.current_user_ocid
 #}
+
+output "instance_private_ip" {
+  value = oci_core_instance.compute_instance.private_ip
+  description = "Private ip of bastion host"
+}
