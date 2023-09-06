@@ -43,6 +43,11 @@ variable "region" {
   description = "OCI Region"
 }
 
+variable "instance_private_ip" {
+  type =        string
+  description = "Instance Private IP"
+}
+
 #variable "ssh_authorized_key" {
 #  type =        string
 #  description = "RSA public key in PEM format. It will added as authorized key for remote connection over SSH"
