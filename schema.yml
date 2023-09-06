@@ -62,7 +62,7 @@ variables:
 title: "Compute Instance Creation"
 description: "Compute Instance Creation in OCI"
 outputGroups:
-- title: "Compuet Instance"
+- title: "Compute Instance"
   outputs:
     - instance_private_ip
     - rsa_private_key
