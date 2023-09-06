@@ -43,10 +43,10 @@ variable "region" {
   description = "OCI Region"
 }
 
-variable "instance_private_ip" {
-  type =        string
-  description = "Instance Private IP"
-}
+#variable "instance_private_ip" {
+#  type =        string
+#  description = "Instance Private IP"
+#}
 
 #variable "ssh_authorized_key" {
 #  type =        string
