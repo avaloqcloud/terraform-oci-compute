@@ -62,13 +62,13 @@ variables:
 title: "Compute Instance Creation"
 description: "Compute Instance Creation in OCI"
 outputGroups:
-- title: "Bastion Host"
+- title: "Compuet Instance"
   outputs:
-    - bastion_public_ip
+    - instance_private_ip
     - rsa_private_key
 outputs:
-  bastion_public_ip:
-    title: "Public ip"
+  instance_private_ip:
+    title: "Private ip"
   rsa_private_key:
     title: "SSH private key"
     sensitive: true
