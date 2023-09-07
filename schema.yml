@@ -11,6 +11,8 @@ variableGroups:
       - memory
       - ocpus
       - vm_name
+      - useExistingVcn
+      
 variables:
   region:
     type: oci:identity:region:name
@@ -59,6 +61,39 @@ variables:
     default: 4
     maximum: 100
     minimum: 1
+    
+  useExistingVcn:
+    type: boolean
+
+  vcnCompartment:
+    type: oci:identity:compartment:id
+    visible: ${useExistingVcn}
+
+  myVcn:
+    type: oci:core:vcn:id
+    dependsOn:
+      compartmentId: ${vcnCompartment}
+    visible:
+      or:
+        - ${useExistingVcn}
+        - and:
+            - and:
+                - true
+                - true
+            - not:
+                - false
+
+  subnetCompartment:
+    type: oci:identity:compartment:id
+    visible: ${useExistingVcn}
+
+  mySubnet:
+    type: oci:core:subnet:id
+    dependsOn:
+      compartmentId: ${subnetCompartment}
+      vcnId: ${myVcn}
+    visible: ${useExistingVcn}
+    
 title: "Compute Instance Creation"
 description: "Compute Instance Creation in OCI"
 outputGroups:
