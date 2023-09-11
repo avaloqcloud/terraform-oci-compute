@@ -6,13 +6,15 @@ variableGroups:
       - region
       - compartment_ocid
       - current_user_ocid
-      - image_id
-      - image_shape
+      - instance_image
+      - instance_shape
       - memory
       - ocpus
       - vm_name
-      - useExistingVcn
-      
+      - instance_tag
+      - ssh_public_key
+      - cloud_init_script
+      - availabilitydomain
 variables:
   region:
     type: oci:identity:region:name
@@ -37,20 +39,26 @@ variables:
     title: VM Name
     description: "VM Name"
     required: true
-  image_id:
+  availabilitydomain:
+    type: oci:identity:availabilitydomain:name
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    visible: complexExpression
+  instance_image:
     type: oci:core:image:id
     required: true
     description: "Select the image for the VM deployment"
     title: "Image"
     dependsOn:
       compartmentId: ${compartment_ocid}
-  shape_id:
+  instance_shape:
     type: oci:core:instanceshape:name
     required: true
     description: "Select the shape for the VM deployment"
     title: "Shape"
     dependsOn:
       compartmentId: ${compartment_ocid}
+      imageId: ${instance_image}
   memory:
     type: number
     default: 4
@@ -61,39 +69,29 @@ variables:
     default: 4
     maximum: 100
     minimum: 1
-    
-  useExistingVcn:
-    type: boolean
 
-  vcnCompartment:
-    type: oci:identity:compartment:id
-    visible: ${useExistingVcn}
+  instance_tag:
+    type: oci:identity:tag:value
+    title: Instance Tags
+    required: false
 
-  myVcn:
-    type: oci:core:vcn:id
-    dependsOn:
-      compartmentId: ${vcnCompartment}
-    visible:
-      or:
-        - ${useExistingVcn}
-        - and:
-            - and:
-                - true
-                - true
-            - not:
-                - false
+  cloud_init_script:
+    type: file
+    title: "Cloud init script"
+    description: " Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration."
+    required: false
 
-  subnetCompartment:
-    type: oci:identity:compartment:id
-    visible: ${useExistingVcn}
+  ssh_public_key:
+    title: SSH public key
+    description: Public SSH key to be included in the ~/.ssh/authorized_keys file for the default user on the instance
+    type: oci:core:ssh:publickey
+    additionalProps:
+      allowMultiple: true
+    required: false
+    default: [""]
+    pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
 
-  mySubnet:
-    type: oci:core:subnet:id
-    dependsOn:
-      compartmentId: ${subnetCompartment}
-      vcnId: ${myVcn}
-    visible: ${useExistingVcn}
-    
+
 title: "Compute Instance Creation"
 description: "Compute Instance Creation in OCI"
 outputGroups:
