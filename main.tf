@@ -12,6 +12,7 @@ resource "oci_core_instance" "compute_instance" {
   compartment_id = var.compartment_ocid
   display_name = var.vm_name
   shape = var.instance_shape
+  compute_cluster_id = var.oci_core_compute_cluster_id
 
   freeform_tags  = {"instance-name"="${var.vm_name}"}
   #defined_tags   = {"instance-name"="${var.vm_name}"}
