@@ -15,6 +15,7 @@ variableGroups:
       - ssh_public_key
       - cloud_init_script
       - availabilitydomain
+      - oci_core_compute_cluster_id
 variables:
   region:
     type: oci:identity:region:name
@@ -90,7 +91,12 @@ variables:
     required: false
     default: [""]
     pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
-
+  oci_core_compute_cluster_id:
+    title: Compute Cluster Id
+    description: Enter compute cluster ID to create instance
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
 
 title: "Compute Instance Creation"
 description: "Compute Instance Creation in OCI"
