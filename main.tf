@@ -2,9 +2,9 @@ provider "oci" {
   region = "${var.region}"
 }
 
-data "oci_identity_availability_domains" "ADs" {
-  compartment_id = var.compartment_ocid
-}
+#data "oci_identity_availability_domains" "ADs" {
+#  compartment_id = var.compartment_ocid
+#}
 
 resource "oci_core_instance" "compute_instance" {
   #availability_domain = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0], "name")}"
@@ -16,6 +16,14 @@ resource "oci_core_instance" "compute_instance" {
 
   freeform_tags  = {"instance-name"="${var.vm_name}"}
   #defined_tags   = {"instance-name"="${var.vm_name}"}
+
+
+  create_vnic_details {
+
+        #Optional
+        subnet_id = var.subnet_id
+    }
+
 
   shape_config {
     memory_in_gbs = var.memory
