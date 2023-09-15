@@ -3,6 +3,11 @@ variable "compartment_ocid" {
   description = "Compartment OCID"
 }
 
+variable "instance_fault_domain" {
+  type = string
+  description = "Choose fault domain"
+}
+
 variable "cloud_init_script" {
   type = string
   description = "Cloud init script"
