@@ -8,6 +8,12 @@ variable "cloud_init_script" {
   description = "Cloud init script"
 }
 
+ variable "subnet_id" {
+  type = string
+  description = "Subnet ID"
+   
+ }
+
 variable "instance_tag" {
   type = string
   description = "Instance Tag"
