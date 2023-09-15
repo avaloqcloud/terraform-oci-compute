@@ -21,6 +21,7 @@ variableGroups:
       - availabilitydomain
       - oci_core_compute_cluster_id
       - subnet_id
+      - instance_fault_domain
 variables:
   region:
     type: oci:identity:region:name
@@ -76,6 +77,38 @@ variables:
     maximum: 100
     minimum: 1
 
+  useExistingVcn:
+    type: boolean
+
+  myVcn:
+    type: oci:core:vcn:id
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    visible:
+      or:
+        - ${useExistingVcn}
+        - and:
+            - and:
+                - true
+                - true
+            - not:
+                - false
+
+  subnet_id:
+    type: oci:core:subnet:id
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      vcnId: ${myVcn}
+    visible: ${useExistingVcn}
+
+  instance_fault_domain:
+    type: oci:identity:faultdomain:name
+    title: Fault Domain
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      availabilityDomainName: ${availabilitydomain}
+      
   instance_tag:
     type: oci:identity:tag:value
     title: Instance Tags
@@ -102,27 +135,3 @@ variables:
     required: false
     dependsOn:
       compartmentId: ${compartment_ocid}
-
-  useExistingVcn:
-    type: boolean
-
-  myVcn:
-    type: oci:core:vcn:id
-    dependsOn:
-      compartmentId: ${compartment_ocid}
-    visible:
-      or:
-        - ${useExistingVcn}
-        - and:
-            - and:
-                - true
-                - true
-            - not:
-                - false
-
-  subnet_id:
-    type: oci:core:subnet:id
-    dependsOn:
-      compartmentId: ${compartment_ocid}
-      vcnId: ${myVcn}
-    visible: ${useExistingVcn}
