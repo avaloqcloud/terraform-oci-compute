@@ -1,3 +1,7 @@
+title: "Compute Cluster Creation"
+description: "Compute Cluster Creation in OCI"
+outputGroups:
+- title: "Compute Instance"
 schemaVersion: 1.1.0
 locale: "en"
 variableGroups:
@@ -6,11 +10,18 @@ variableGroups:
       - region
       - compartment_ocid
       - current_user_ocid
-      - image_id
-      - image_shape
+      - instance_image
+      - instance_shape
       - memory
       - ocpus
       - vm_name
+      - instance_tag
+      - ssh_public_key
+      - cloud_init_script
+      - availabilitydomain
+      - oci_core_compute_cluster_id
+      - subnet_id
+      - instance_fault_domain
 variables:
   region:
     type: oci:identity:region:name
@@ -35,20 +46,26 @@ variables:
     title: VM Name
     description: "VM Name"
     required: true
-  image_id:
+  availabilitydomain:
+    type: oci:identity:availabilitydomain:name
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    visible: complexExpression
+  instance_image:
     type: oci:core:image:id
     required: true
     description: "Select the image for the VM deployment"
     title: "Image"
     dependsOn:
       compartmentId: ${compartment_ocid}
-  shape_id:
+  instance_shape:
     type: oci:core:instanceshape:name
     required: true
     description: "Select the shape for the VM deployment"
     title: "Shape"
     dependsOn:
       compartmentId: ${compartment_ocid}
+      imageId: ${instance_image}
   memory:
     type: number
     default: 4
@@ -59,16 +76,62 @@ variables:
     default: 4
     maximum: 100
     minimum: 1
-title: "Compute Instance Creation"
-description: "Compute Instance Creation in OCI"
-outputGroups:
-- title: "Compute Instance"
-  outputs:
-    - instance_private_ip
-    - rsa_private_key
-outputs:
-  instance_private_ip:
-    title: "Private ip"
-  rsa_private_key:
-    title: "SSH private key"
-    sensitive: true
+
+  useExistingVcn:
+    type: boolean
+
+  myVcn:
+    type: oci:core:vcn:id
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+    visible:
+      or:
+        - ${useExistingVcn}
+        - and:
+            - and:
+                - true
+                - true
+            - not:
+                - false
+
+  subnet_id:
+    type: oci:core:subnet:id
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      vcnId: ${myVcn}
+    visible: ${useExistingVcn}
+
+  instance_fault_domain:
+    type: oci:identity:faultdomain:name
+    title: Fault Domain
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
+      availabilityDomainName: ${availabilitydomain}
+      
+  instance_tag:
+    type: oci:identity:tag:value
+    title: Instance Tags
+    required: false
+
+  cloud_init_script:
+    type: file
+    title: "Cloud init script"
+    description: " Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration."
+    required: false
+
+  ssh_public_key:
+    title: SSH public key
+    description: Public SSH key to be included in the ~/.ssh/authorized_keys file for the default user on the instance
+    type: oci:core:ssh:publickey
+    additionalProps:
+      allowMultiple: true
+    required: false
+    default: [""]
+    pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
+  oci_core_compute_cluster_id:
+    title: Compute Cluster Id
+    description: Enter compute cluster ID to create instance
+    required: false
+    dependsOn:
+      compartmentId: ${compartment_ocid}
