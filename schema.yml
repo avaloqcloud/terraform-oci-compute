@@ -10,18 +10,23 @@ variableGroups:
       - region
       - compartment_ocid
       - current_user_ocid
+
+  - title: "Instance configuration details"
+    variables:      
       - instance_image
       - instance_shape
       - memory
       - ocpus
       - vm_name
-      - instance_tag
+      - availabilitydomain
+      - instance_fault_domain
+      - useExistingVcn
+      - myVcn
+      - subnet_id
       - ssh_public_key
       - cloud_init_script
-      - availabilitydomain
       - oci_core_compute_cluster_id
-      - subnet_id
-      - instance_fault_domain
+      - instance_tag
 variables:
   region:
     type: oci:identity:region:name
