@@ -1,5 +1,5 @@
 title: "Compute Cluster Creation"
-description: "Compute Cluster Creation in OCI"
+description: "Compute Instance Creation in OCI"
 outputGroups:
 - title: "Compute Instance"
 schemaVersion: 1.1.0
