@@ -15,7 +15,7 @@ resource "oci_core_instance" "compute_instance" {
   #compute_cluster_id = var.oci_core_compute_cluster_id
   fault_domain = var.instance_fault_domain
 
-  freeform_tags  = {"instance-name"="${var.vm_name}"}
+  #freeform_tags  = {"instance-name"="${var.vm_name}"}
   #defined_tags   = {"instance-name"="${var.vm_name}"}
 
 
