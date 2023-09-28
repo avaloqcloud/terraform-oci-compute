@@ -64,8 +64,8 @@ variable "region" {
    description = "Availability Domain"
  }
 
- variable "oci_core_compute_cluster_id" {
-  type = string
-  description = "Compute Cluster ID"
-   
- }
+# variable "oci_core_compute_cluster_id" {
+#  type = string
+#  description = "Compute Cluster ID"
+#   
+# }
