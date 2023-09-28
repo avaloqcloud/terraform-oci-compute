@@ -26,7 +26,7 @@ variableGroups:
       - ssh_public_key
       - cloud_init_script
       #- oci_core_compute_cluster_id
-      - instance_tag
+      #- instance_tag
 variables:
   region:
     type: oci:identity:region:name
@@ -114,10 +114,10 @@ variables:
       compartmentId: ${compartment_ocid}
       availabilityDomainName: ${availabilitydomain}
       
-  instance_tag:
-    type: oci:identity:tag:value
-    title: Instance Tags
-    required: false
+  #instance_tag:
+  #  type: oci:identity:tag:value
+  #  title: Instance Tags
+  #  required: false
 
   cloud_init_script:
     type: file
