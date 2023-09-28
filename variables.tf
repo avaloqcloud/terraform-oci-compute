@@ -19,10 +19,10 @@ variable "cloud_init_script" {
    
  }
 
-variable "instance_tag" {
-  type = string
-  description = "Instance Tag"
-}
+#variable "instance_tag" {
+#  type = string
+#  description = "Instance Tag"
+#}
 
 variable "ssh_public_key" {
   type = string
