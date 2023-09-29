@@ -6,12 +6,11 @@ Click on above "Deploy to Oracle Cloud" button to create compute instance using 
 
 
 ## Usage
+ 
+    module "acf_resource_compute" {
+        source = "https://github.com/avaloqcloud/acf_resource_compute"
+    }
 
-module "acf_resource_compute" {
-
-    source = "https://github.com/avaloqcloud/acf_resource_compute"
-
-}
 
 
 ## Providers
