@@ -12,7 +12,8 @@ variableGroups:
       - current_user_ocid
 
   - title: "Instance configuration details"
-    variables:      
+    variables:    
+      - image_compartment
       - instance_image
       - instance_shape
       - memory
@@ -21,7 +22,9 @@ variableGroups:
       - availabilitydomain
       - instance_fault_domain
       - useExistingVcn
+      - vcnCompartment
       - myVcn
+      - subnetCompartment
       - subnet_id
       - ssh_public_key
       - cloud_init_script
@@ -56,21 +59,28 @@ variables:
     dependsOn:
       compartmentId: ${compartment_ocid}
     visible: complexExpression
+
+  image_compartment:
+    type: oci:identity:compartment:id
+    #visible: ${image_compartment}
+    
   instance_image:
     type: oci:core:image:id
     required: true
     description: "Select the image for the VM deployment"
     title: "Image"
     dependsOn:
-      compartmentId: ${compartment_ocid}
+      compartmentId: ${image_compartment}
+      
   instance_shape:
     type: oci:core:instanceshape:name
     required: true
     description: "Select the shape for the VM deployment"
     title: "Shape"
     dependsOn:
-      compartmentId: ${compartment_ocid}
+      compartmentId: ${image_compartment}
       imageId: ${instance_image}
+      
   memory:
     type: number
     default: 4
@@ -85,10 +95,14 @@ variables:
   useExistingVcn:
     type: boolean
 
+  vcnCompartment:
+    type: oci:identity:compartment:id
+    visible: ${useExistingVcn}
+    
   myVcn:
     type: oci:core:vcn:id
     dependsOn:
-      compartmentId: ${compartment_ocid}
+      compartmentId: ${vcnCompartment}
     visible:
       or:
         - ${useExistingVcn}
@@ -98,11 +112,15 @@ variables:
                 - true
             - not:
                 - false
-
+                
+  subnetCompartment:
+    type: oci:identity:compartment:id
+    visible: ${useExistingVcn}
+    
   subnet_id:
     type: oci:core:subnet:id
     dependsOn:
-      compartmentId: ${compartment_ocid}
+      compartmentId: ${subnetCompartment}
       vcnId: ${myVcn}
     visible: ${useExistingVcn}
 
@@ -123,7 +141,7 @@ variables:
     type: file
     title: "Cloud init script"
     description: " Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration."
-    required: false
+    required: true
 
   ssh_public_key:
     title: SSH public key
