@@ -40,7 +40,8 @@ resource "oci_core_instance" "compute_instance" {
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
     #ssh_authorized_keys = tls_private_key.ssh_key.public_key_openssh
-    user_data = var.cloud_init_script
+    user_data = base64encode(var.cloud_init_script)
+    #user_data = var.cloud_init_script
   
   }
   timeouts {
