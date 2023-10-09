@@ -13,6 +13,11 @@
 #  description = "Compartment OCID"
 #}
 
+variable "boot_volume_size_in_gbs" {
+  type =        string
+  description = "Compartment OCID"
+}
+
 variable "compartment_ocid" {
   type =        string
   description = "Compartment OCID"
