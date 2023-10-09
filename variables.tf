@@ -3,15 +3,15 @@
 #  description = "Compartment OCID"
 #}
 
-variable "vcnCompartment" {
-  type =        string
-  description = "Compartment OCID"
-}
+#variable "vcnCompartment" {
+#  type =        string
+#  description = "Compartment OCID"
+#}
 
-variable "subnetCompartment" {
-  type =        string
-  description = "Compartment OCID"
-}
+#variable "subnetCompartment" {
+#  type =        string
+#  description = "Compartment OCID"
+#}
 
 variable "compartment_ocid" {
   type =        string
