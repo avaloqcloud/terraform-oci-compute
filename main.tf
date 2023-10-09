@@ -1,6 +1,6 @@
-provider "oci" {
-  region = "${var.region}"
-}
+#provider "oci" {
+#  region = "${var.region}"
+#}
 
 #data "oci_identity_availability_domains" "ADs" {
 #  compartment_id = var.compartment_ocid
