@@ -1,7 +1,7 @@
-variable "image_compartment" {
-  type =        string
-  description = "Compartment OCID"
-}
+#variable "image_compartment" {
+#  type =        string
+#  description = "Compartment OCID"
+#}
 
 variable "vcnCompartment" {
   type =        string
