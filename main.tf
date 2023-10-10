@@ -34,7 +34,7 @@ resource "oci_core_instance" "compute_instance" {
   source_details {
     source_type = "image"
     source_id = var.instance_image
-    boot_volume_size_in_gbs = "50"
+    boot_volume_size_in_gbs = var.boot_volume_size_in_gbs
   } 
   
   metadata = {

@@ -16,6 +16,7 @@ variableGroups:
       - image_compartment
       - instance_image
       - instance_shape
+      - boot_volume_size_in_gbs
       - memory
       - ocpus
       - vm_name
@@ -158,3 +159,8 @@ variables:
   #  required: false
   #  dependsOn:
   #    compartmentId: ${compartment_ocid}
+
+  boot_volume_size_in_gbs:
+    type: number
+    title: zBoot volume size
+    required: true

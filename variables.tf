@@ -16,6 +16,7 @@
 variable "boot_volume_size_in_gbs" {
   type =        string
   description = "Compartment OCID"
+  default = "500"
 }
 
 variable "compartment_ocid" {
