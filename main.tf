@@ -23,6 +23,7 @@ resource "oci_core_instance" "compute_instance" {
 
         #Optional
         subnet_id = var.subnet_id
+        assign_public_ip = false
     }
 
 
