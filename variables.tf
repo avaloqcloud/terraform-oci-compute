@@ -26,6 +26,7 @@ variable "compartment_ocid" {
 variable "instance_fault_domain" {
   type = string
   description = "Choose fault domain"
+  default = "FAULT-DOMAIN-1"
 }
 
 variable "cloud_init_script" {
@@ -72,11 +73,6 @@ variable "ocpus" {
 variable "vm_name" {
   type =        string
   description = "VM Name"
-}
-
-variable "region" {
-  type =        string
-  description = "OCI Region"
 }
 
  variable "availabilitydomain" {
