@@ -24,11 +24,11 @@ variable "compartment_ocid" {
   description = "Compartment OCID"
 }
 
-variable "instance_fault_domain" {
+/* variable "instance_fault_domain" {
   type = string
   description = "Choose fault domain"
   default = "FAULT-DOMAIN-1"
-}
+} */
 
 variable "cloud_init_script" {
   type = string

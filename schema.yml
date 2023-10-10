@@ -21,7 +21,7 @@ variableGroups:
       - ocpus
       - vm_name
       - availabilitydomain
-      - instance_fault_domain
+      #- instance_fault_domain
       - useExistingVcn
       - vcnCompartment
       - myVcn
@@ -125,13 +125,13 @@ variables:
       vcnId: ${myVcn}
     visible: ${useExistingVcn}
 
-  instance_fault_domain:
-    type: oci:identity:faultdomain:name
-    title: Fault Domain
-    required: false
-    dependsOn:
-      compartmentId: ${compartment_ocid}
-      availabilityDomainName: ${availabilitydomain}
+  # instance_fault_domain:
+  #   type: oci:identity:faultdomain:name
+  #   title: Fault Domain
+  #   required: false
+  #   dependsOn:
+  #     compartmentId: ${compartment_ocid}
+  #     availabilityDomainName: ${availabilitydomain}
       
   #instance_tag:
   #  type: oci:identity:tag:value
