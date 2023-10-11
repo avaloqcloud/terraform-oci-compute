@@ -162,5 +162,5 @@ variables:
 
   boot_volume_size_in_gbs:
     type: number
-    title: zBoot volume size
+    title: Boot volume size
     required: true
