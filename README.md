@@ -2,7 +2,6 @@
 
 ## Terraform Compute Instance 
 The code provides a reusuable Terraform module that provisions a compute instance on Oracle Cloud Infrastructure.  This modules does not create network resources like VCN, subnets, etc. 
-Click on above "Deploy to Oracle Cloud" button to create compute instance using Oracle Resource Manager Stack.
 
 
 ## Usage
