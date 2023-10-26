@@ -3,6 +3,14 @@
 ## Terraform Compute Instance 
 The code provides a reusuable Terraform module that provisions a compute instance on Oracle Cloud Infrastructure.   
 
+## Table of contents
+
+* [Requirements](#requirements)
+* [Usage](#usage)
+* [Providers](#providers)
+* [Resources](#resources)
+* [Inputs](#inputs)
+  
 
 ## Requirements
 This modules does not create network resources like VCN, subnets, etc as it uses the existing network resources. Please use acf_res_net module for creating new network resources in OCI. 
