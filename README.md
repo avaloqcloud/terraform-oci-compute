@@ -1,4 +1,4 @@
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://objectstorage.eu-zurich-1.oraclecloud.com/p/KCZxzm1t58-_5dem2kcMb4BK8rmUvLLZSnjdBHnhOdIEmuJixokuKeBsMOMwZm0-/n/zrr2g2bttf8t/b/iso/o/acf_resource_compute_latest.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/acf_resource_compute/archive/refs/tags/0.1.0.zip)
 
 ## Terraform Compute Instance 
 The code provides a reusuable Terraform module that provisions a compute instance on Oracle Cloud Infrastructure.   
