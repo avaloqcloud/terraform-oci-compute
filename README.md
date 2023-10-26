@@ -42,10 +42,3 @@ The code provides a reusuable Terraform module that provisions a compute instanc
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Subnet ID | `string` | n/a | yes |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | VM Name | `string` | n/a | yes |
 
-
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_instance_private_ip"></a> [instance\_private\_ip](#output\_instance\_private\_ip) | Private ip of the instance |
