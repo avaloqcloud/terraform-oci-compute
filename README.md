@@ -22,6 +22,18 @@ This modules does not create network resources like VCN, subnets, etc as it uses
         source = "https://github.com/avaloqcloud/acf_resource_compute"
     }
 
+### File `versions.tf` content example:
+
+```hcl
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "~> 5.39"
+    }
+  }
+}
+```
 
 ## Providers
 
