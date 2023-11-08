@@ -18,8 +18,8 @@ This modules does not create network resources like VCN, subnets, etc as it uses
 
 ## Usage
  
-    module "acf_resource_compute" {
-        source = "https://github.com/avaloqcloud/acf_resource_compute"
+    module "terraform-oci-compute" {
+        source = "github.com/avaloqcloud/terraform-oci-compute"
     }
 
 ### File `versions.tf` content example:
