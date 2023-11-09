@@ -22,14 +22,20 @@ This modules does not create network resources like VCN, subnets, etc as it uses
         source = "github.com/avaloqcloud/terraform-oci-compute"
     }
 
-### File `versions.tf` content example:
+### File `provider.tf` content example:
 
 ```hcl
 terraform {
+  required_version = "~> 1.2"
+
   required_providers {
     github = {
       source  = "integrations/github"
       version = "~> 5.39"
+    }
+    oci = {
+      source  = "oracle/oci"
+      version = "5.18.0"
     }
   }
 }
