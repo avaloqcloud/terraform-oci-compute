@@ -1,3 +1,8 @@
+variable "assign_public_ip" {
+  type =        string
+  description = "Assign public IP to the instance"
+}
+
 variable "boot_volume_size_in_gbs" {
   type =        string
   description = "Compartment OCID"
