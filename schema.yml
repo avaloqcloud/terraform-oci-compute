@@ -27,6 +27,7 @@ variableGroups:
       - myVcn
       - subnetCompartment
       - subnet_id
+      - assign_public_ip
       - ssh_public_key
       - cloud_init_script
       #- oci_core_compute_cluster_id
@@ -124,6 +125,15 @@ variables:
       compartmentId: ${subnetCompartment}
       vcnId: ${myVcn}
     visible: ${useExistingVcn}
+
+  assign_public_ip: 
+    type: enum
+    enum: 
+     - false
+     - true
+    required: true
+    title: Assign public IP ?
+    description: "Assign public IP to the instance"
 
   # instance_fault_domain:
   #   type: oci:identity:faultdomain:name
