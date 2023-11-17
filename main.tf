@@ -10,7 +10,7 @@ resource "oci_core_instance" "compute_instance" {
   shape = var.instance_shape
 
   create_vnic_details {
-        #subnet_id = var.subnet_id
+        subnet_id = "${subnet_id}"
         assign_public_ip = var.assign_public_ip
     }
 
