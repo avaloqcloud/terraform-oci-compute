@@ -1,3 +1,8 @@
+data "oci_core_subnet" "subnet" {
+    #Required
+    subnet_id = var.subnet_id
+}
+
 resource "oci_core_instance" "compute_instance" {
   availability_domain = var.availabilitydomain
   compartment_id = var.compartment_ocid
@@ -5,7 +10,7 @@ resource "oci_core_instance" "compute_instance" {
   shape = var.instance_shape
 
   create_vnic_details {
-        subnet_id = var.subnet_id
+        #subnet_id = var.subnet_id
         assign_public_ip = var.assign_public_ip
     }
 
