@@ -86,37 +86,47 @@ variables:
     maximum: 100
     minimum: 1
 
-  useExistingVcn:
-    type: boolean
+  # useExistingVcn:
+  #   type: boolean
 
-  vcnCompartment:
-    type: oci:identity:compartment:id
-    visible: ${useExistingVcn}
+  # vcnCompartment:
+  #   type: oci:identity:compartment:id
+  #   visible: ${useExistingVcn}
     
-  myVcn:
-    type: oci:core:vcn:id
-    dependsOn:
-      compartmentId: ${vcnCompartment}
-    visible:
-      or:
-        - ${useExistingVcn}
-        - and:
-            - and:
-                - true
-                - true
-            - not:
-                - false
+  # myVcn:
+  #   type: oci:core:vcn:id
+  #   dependsOn:
+  #     compartmentId: ${vcnCompartment}
+  #   visible:
+  #     or:
+  #       - ${useExistingVcn}
+  #       - and:
+  #           - and:
+  #               - true
+  #               - true
+  #           - not:
+  #               - false
                 
-  subnetCompartment:
-    type: oci:identity:compartment:id
-    visible: ${useExistingVcn}
+  # subnetCompartment:
+  #   type: oci:identity:compartment:id
+  #   visible: ${useExistingVcn}
     
+  # subnet_id:
+  #   type: oci:core:subnet:id
+  #   dependsOn:
+  #     compartmentId: ${subnetCompartment}
+  #     vcnId: ${myVcn}
+  #   visible: ${useExistingVcn}
+
+#### Data Source for subnet
+
   subnet_id:
-    type: oci:core:subnet:id
-    dependsOn:
-      compartmentId: ${subnetCompartment}
-      vcnId: ${myVcn}
-    visible: ${useExistingVcn}
+    type: string
+    minLength: 1
+    maxLength: 255
+    title: subnet ID
+    description: "subnet ID"
+    required: true
 
   assign_public_ip: 
     type: enum
