@@ -35,3 +35,7 @@ output "instance_private_ip" {
   value = oci_core_instance.compute_instance.private_ip
   description = "Private ip of the instance"
 }
+output "compute_instance_id" {
+  value = oci_core_instance.compute_instance.id
+  description = "ID of the instance"
+}
