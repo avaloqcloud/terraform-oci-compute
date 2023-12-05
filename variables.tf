@@ -1,8 +1,8 @@
 variable "instance" {
   description = "Compute instance input object"
   type = object({
-    assign_public_ip = string,
-    boot_volume_size_in_gbs = string, 
+    assign_public_ip = string, #default = false
+    boot_volume_size_in_gbs = string, #default = "500"
     compartment_ocid = string,
     cloud_init_script = string,
     subnet_id = string,
