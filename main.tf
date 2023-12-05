@@ -4,6 +4,16 @@ resource "oci_core_instance" "compute_instance" {
   display_name = var.vm_name
   shape = var.instance_shape
 
+  agent_config {
+    are_all_plugins_disabled = false
+    is_management_disabled = true
+    is_monitoring_disabled = false
+    plugins_config {
+        name = "Bastion"
+        desired_state = "ENABLED"
+      }
+  }
+
   create_vnic_details {
         subnet_id = var.subnet_id
         assign_public_ip = var.assign_public_ip
