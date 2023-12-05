@@ -7,7 +7,7 @@ resource "oci_core_instance" "compute_instance" {
   agent_config {
     are_all_plugins_disabled = false
     is_management_disabled = true
-    is_monitoring_disabled = false
+    is_monitoring_disabled = true
     plugins_config {
         name = "Bastion"
         desired_state = "ENABLED"
