@@ -3,7 +3,7 @@ schemaVersion: 1.1.0
 locale: "en"
 variables:
   registry:
-    description: "Registry input object"
+    description: "Compute instance input object"
     type: object
 
 
