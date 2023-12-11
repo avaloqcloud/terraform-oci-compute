@@ -9,7 +9,7 @@ data "oci_core_instance" "existing_instance" {
     name   = "vm_name"
     values = ["${var.instance.vm_name}"]
   }
-}
+
 
 
 
