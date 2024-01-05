@@ -28,6 +28,8 @@ variableGroups:
       - assign_public_ip
       - ssh_public_key
       - cloud_init_script
+  - title: "Enable Plugins"
+      - bastion_desired_state
 
 variables:
   #region:
@@ -157,3 +159,13 @@ variables:
     type: number
     title: Boot volume size
     required: true
+
+  bastion_desired_state: 
+    type: enum
+    enum: 
+     - ENABLED
+     - DISABLED
+    default: DISABLED
+    required: false
+    title: Enable Bastion Plugin
+    description: "Enable bastion plugin to the instance from private network"
