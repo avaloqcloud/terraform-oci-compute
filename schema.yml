@@ -111,6 +111,7 @@ variables:
   subnetCompartment:
     type: oci:identity:compartment:id
     visible: ${useExistingVcn}
+    default: ${vcnCompartment}
     
   subnet_id:
     type: oci:core:subnet:id
