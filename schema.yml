@@ -29,6 +29,7 @@ variableGroups:
       - ssh_public_key
       - cloud_init_script
   - title: "Enable Plugins"
+      variables:
       - bastion_desired_state
 
 variables:
