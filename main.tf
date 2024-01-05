@@ -10,7 +10,7 @@ resource "oci_core_instance" "compute_instance" {
     is_monitoring_disabled = true
     plugins_config {
         name = "Bastion"
-        desired_state = "ENABLED"
+        desired_state = var.bastion_desired_state
       }
   }
 
