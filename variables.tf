@@ -60,3 +60,7 @@ variable "vm_name" {
    type = string
    description = "Availability Domain"
  }
+
+ variable "bastion_desired_state" {
+ }
+
