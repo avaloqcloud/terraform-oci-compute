@@ -44,6 +44,7 @@ resource "oci_core_instance" "compute_instance" {
   timeouts {
     create = "60m"
   }
+  defined_tags = var.resource_tags
 }
 
 output "instance_private_ip" {
