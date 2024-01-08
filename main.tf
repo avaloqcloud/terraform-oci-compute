@@ -14,7 +14,7 @@ resource "oci_core_instance" "compute_instance" {
       for_each = var.is_bastion_plugin_enabled == true ? [1] : []
       content {
         name          = "Bastion"
-        desired_state = var.bastion_desired_state
+        desired_state = "ENABLED"
       }
     }
   }
