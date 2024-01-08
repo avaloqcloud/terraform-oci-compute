@@ -61,6 +61,9 @@ variable "vm_name" {
    description = "Availability Domain"
  }
 
- variable "bastion_desired_state" {
+ variable "is_bastion_plugin_enabled" {
+  type = bool
+  default = false
+  description = "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
  }
 
