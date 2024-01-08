@@ -8,10 +8,15 @@ resource "oci_core_instance" "compute_instance" {
     are_all_plugins_disabled = false
     is_management_disabled = true
     is_monitoring_disabled = true
-    plugins_config {
-        name = "Bastion"
-        desired_state = var.bastion_desired_state
+    
+    # Add plugins_config block only if is_bastion_plugin_enabled is true
+    dynamic "plugins_config" {
+      for_each = var.is_bastion_plugin_enabled == true ? [1] : []
+      content {
+        name          = "Bastion"
+        desired_state = "ENABLED"
       }
+    }
   }
 
   create_vnic_details {
@@ -39,6 +44,7 @@ resource "oci_core_instance" "compute_instance" {
   timeouts {
     create = "60m"
   }
+  defined_tags = var.defined_tags
 }
 
 output "instance_private_ip" {
