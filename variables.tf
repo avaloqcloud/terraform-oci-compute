@@ -67,9 +67,9 @@ variable "vm_name" {
   description = "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
  }
 
- variable "resource_tags" {
+ variable "defined_tags" {
   type        = map(string)
   default     = {}
-  description = "Specify the tag for the OCI resources"
+  description = "Specify the defined tag for compute VM"
 }
 
