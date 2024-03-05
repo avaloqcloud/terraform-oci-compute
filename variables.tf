@@ -26,6 +26,11 @@ variable "cloud_init_script" {
    
  }
 
+variable "private_ip" {
+  type = string
+  description = "A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet's CIDR."
+}
+
 variable "ssh_public_key" {
   type = string
   description = "SSH public key"
