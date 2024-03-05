@@ -25,6 +25,7 @@ variableGroups:
       - myVcn
       - subnetCompartment
       - subnet_id
+      - private_ip
       - assign_public_ip
       - ssh_public_key
       - cloud_init_script
