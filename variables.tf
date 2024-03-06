@@ -67,11 +67,16 @@ variable "vm_name" {
    description = "Availability Domain"
  }
 
- variable "is_bastion_plugin_enabled" {
+ variable "is_plugin_enabled" {
   type = bool
   default = false
   description = "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
  }
+
+variable "plugin_name" {
+  type = string
+  default = ""
+}
 
  variable "defined_tags" {
   type        = map(string)

@@ -11,9 +11,9 @@ resource "oci_core_instance" "compute_instance" {
     
     # Add plugins_config block only if is_bastion_plugin_enabled is true
     dynamic "plugins_config" {
-      for_each = var.is_bastion_plugin_enabled == true ? [1] : []
+      for_each = var.is_plugin_enabled == true ? [1] : []
       content {
-        name          = "Bastion"
+        name          = var.plugin_name
         desired_state = "ENABLED"
       }
     }
