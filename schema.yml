@@ -29,7 +29,8 @@ variableGroups:
       - assign_public_ip
       - ssh_public_key
       - cloud_init_script
-      - is_bastion_plugin_enabled
+      - is_plugin_enabled
+      - plugin_name
 
 variables:
   #region:
@@ -161,9 +162,13 @@ variables:
     title: Boot volume size
     required: true
 
-  is_bastion_plugin_enabled: 
+  is_plugin_enabled: 
     type: boolean
     default: false
     required: false
     title: "Specify if the Bastion Plugin to be enabled"
     description: "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
+
+  plugin_name: 
+    type: string
+    visible: ${is_plugin_enabled}
