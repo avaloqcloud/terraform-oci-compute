@@ -96,6 +96,7 @@ variables:
   vcnCompartment:
     type: oci:identity:compartment:id
     visible: ${useExistingVcn}
+    default: ${compartment_ocid}
     
   myVcn:
     type: oci:core:vcn:id
@@ -136,7 +137,7 @@ variables:
     type: file
     title: "Cloud init script"
     description: " Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration."
-    required: true
+    #required: true
 
   ssh_public_key:
     title: SSH public key
