@@ -18,6 +18,7 @@ variable "compartment_ocid" {
 variable "cloud_init_script" {
   type = string
   description = "Cloud init script"
+  default = ""
 }
 
  variable "subnet_id" {
@@ -70,7 +71,7 @@ variable "vm_name" {
  variable "is_plugin_enabled" {
   type = bool
   default = false
-  description = "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
+  description = "Specify if the Plugin to be enabled."
  }
 
 variable "plugin_name" {

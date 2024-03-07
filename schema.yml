@@ -47,7 +47,7 @@ variables:
     type: string
     minLength: 1
     maxLength: 255
-    pattern: "^[a-z][a-zA-Z0-9]+$"
+    #pattern: "^[a-z][a-zA-Z0-9]+$"
     title: VM Name
     description: "VM Name"
     required: true
@@ -166,8 +166,8 @@ variables:
     type: boolean
     default: false
     required: false
-    title: "Specify if the Bastion Plugin to be enabled"
-    description: "Specify if the Bastion Plugin to be enabled in order to allows secure shell (SSH) connections to an instance without public IP addresses using the Bastion service."
+    title: "Specify if the Plugin to be enabled"
+    description: "Specify if the Plugin to be enabled"
 
   plugin_name: 
     type: string
