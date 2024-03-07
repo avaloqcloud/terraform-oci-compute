@@ -60,6 +60,7 @@ variables:
   image_compartment:
     type: oci:identity:compartment:id
     #visible: ${image_compartment}
+    default: ${compartment_ocid}
     
   instance_image:
     type: oci:core:image:id
