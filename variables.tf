@@ -75,7 +75,7 @@ variable "vm_name" {
  }
 
 variable "plugin_name" {
-  type = string
+  type = list(string)
   default = ""
 }
 
