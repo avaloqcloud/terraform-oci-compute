@@ -172,5 +172,5 @@ variables:
     description: "Specify if the Plugin to be enabled"
 
   plugin_name: 
-    type: string
+    #type: string
     visible: ${is_plugin_enabled}
