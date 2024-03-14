@@ -76,7 +76,8 @@ variable "vm_name" {
 
 variable "plugin_name" {
   type = list(string)
-  default = ""
+  default = [ "" ]
+  #default = ""
 }
 
  variable "defined_tags" {
