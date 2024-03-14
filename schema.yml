@@ -164,13 +164,13 @@ variables:
     title: Boot volume size
     required: true
 
-  is_plugin_enabled: 
-    type: boolean
-    default: false
-    required: false
-    title: "Specify if the Plugin to be enabled"
-    description: "Specify if the Plugin to be enabled"
+  # is_plugin_enabled: 
+  #   type: boolean
+  #   default: false
+  #   required: false
+  #   title: "Specify if the Plugin to be enabled"
+  #   description: "Specify if the Plugin to be enabled"
 
-  plugin_name: 
-    #type: string
-    visible: ${is_plugin_enabled}
+  # plugin_name: 
+  #   #type: string
+  #   visible: ${is_plugin_enabled}

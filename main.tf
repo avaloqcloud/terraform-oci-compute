@@ -4,7 +4,7 @@ resource "oci_core_instance" "compute_instance" {
   display_name = var.vm_name
   shape = var.instance_shape
 
-  agent_config {
+  /* agent_config {
     are_all_plugins_disabled = false
     is_management_disabled = true
     is_monitoring_disabled = true
@@ -17,7 +17,37 @@ resource "oci_core_instance" "compute_instance" {
         desired_state = "ENABLED"
       }
     }
-  }
+  } */
+
+	agent_config {
+
+		is_management_disabled = "false"
+		is_monitoring_disabled = "false"
+		plugins_config {
+			desired_state = "DISABLED"
+			name = "Vulnerability Scanning"
+		}
+		plugins_config {
+			desired_state = "DISABLED"
+			name = "OS Management Service Agent"
+		}
+		plugins_config {
+			desired_state = "DISABLED"
+			name = "Compute Instance Run Command"
+		}
+		plugins_config {
+			desired_state = "DISABLED"
+			name = "Compute Instance Monitoring"
+		}
+		plugins_config {
+			desired_state = "ENABLED"
+			name = "Block Volume Management"
+		}
+    plugins_config {
+			desired_state = "ENABLED"
+			name = "Bastion"
+		}
+	}
 
   create_vnic_details {
         subnet_id = var.subnet_id

@@ -68,16 +68,16 @@ variable "vm_name" {
    description = "Availability Domain"
  }
 
- variable "is_plugin_enabled" {
+ /* variable "is_plugin_enabled" {
   type = bool
   default = false
   description = "Specify if the Plugin to be enabled."
- }
+ } */
 
-variable "plugin_name" {
+/* variable "plugin_name" {
   type = list(string)
   default = [ "Bastion", "Block Volume Management" ]
-}
+} */
 
  variable "defined_tags" {
   type        = map(string)
