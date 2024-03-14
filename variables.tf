@@ -77,18 +77,6 @@ variable "vm_name" {
 variable "plugin_name" {
   type = list(string)
   default = [ "Bastion", "Block Volume Management" ]
-
-}
-
-variable "test" {
-  type = map(object({
-    pname = string
-  }))
-  default = {
-    "test" = {
-      pname = "Block Volume Management"
-    }
-  }
 }
 
  variable "defined_tags" {

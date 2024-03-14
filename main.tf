@@ -13,8 +13,7 @@ resource "oci_core_instance" "compute_instance" {
     dynamic "plugins_config" {
       for_each = var.is_plugin_enabled == true ? [1] : []
       content {
-        for_each = var.test
-        name          = each.value.pname
+        name          = var.plugin_name
         desired_state = "ENABLED"
       }
     }
