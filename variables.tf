@@ -21,7 +21,7 @@ variable "cloud_init_script" {
   default = ""
 }
 
- variable "subnet_id" {
+variable "subnet_id" {
   type = string
   description = "Subnet ID"
    
@@ -63,23 +63,12 @@ variable "vm_name" {
   description = "VM Name"
 }
 
- variable "availabilitydomain" {
+variable "availabilitydomain" {
    type = string
    description = "Availability Domain"
  }
 
- /* variable "is_plugin_enabled" {
-  type = bool
-  default = false
-  description = "Specify if the Plugin to be enabled."
- } */
-
-/* variable "plugin_name" {
-  type = list(string)
-  default = [ "Bastion", "Block Volume Management" ]
-} */
-
- variable "defined_tags" {
+variable "defined_tags" {
   type        = map(string)
   default     = {}
   description = "Specify the defined tag for compute VM"

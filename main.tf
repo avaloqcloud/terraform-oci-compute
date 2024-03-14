@@ -4,23 +4,7 @@ resource "oci_core_instance" "compute_instance" {
   display_name = var.vm_name
   shape = var.instance_shape
 
-  /* agent_config {
-    are_all_plugins_disabled = false
-    is_management_disabled = true
-    is_monitoring_disabled = true
-    
-    # Add plugins_config block only if is_bastion_plugin_enabled is true
-    dynamic "plugins_config" {
-      for_each = var.is_plugin_enabled == true ? [1] : []
-      content {
-        name          = var.plugin_name
-        desired_state = "ENABLED"
-      }
-    }
-  } */
-
 	agent_config {
-    #for_each = var.is_plugin_enabled == true ? [1] : []
     are_all_plugins_disabled = false
     is_management_disabled = true
     is_monitoring_disabled = true
