@@ -76,7 +76,7 @@ variable "vm_name" {
 
 variable "plugin_name" {
   type = list(string)
-  default = [ "" ]
+  default = [ "Bastion", "Block Volume Management" ]
   #default = ""
 }
 
