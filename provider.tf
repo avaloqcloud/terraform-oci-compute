@@ -12,14 +12,14 @@ terraform {
     }
   }
 
-  backend "s3" {
+  /* backend "s3" {
     bucket         = "avinash-test"
     key            = "terraform.tfstate"
     region         = "eu-zurich-1"
-    endpoint       = "https://objectstorage.eu-zurich-1.oraclecloud.com"
+    endpoint       = "https://zrr2g2bttf8t.compat.objectstorage.eu-zurich-1.oraclecloud.com"
     skip_region_validation = true
     skip_credentials_validation = true
     skip_metadata_api_check = true
-  }
+  } */
 
 }
