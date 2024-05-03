@@ -18,6 +18,7 @@ variable "compartment_ocid" {
 variable "cloud_init_script" {
   type = string
   description = "Cloud init script"
+  default = ""
 }
 
  variable "subnet_id" {
