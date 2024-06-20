@@ -86,7 +86,8 @@ variable "plugin_name" {
 }
 
 variable "nsg_ids" {
-  type = string
-  description = "Network Security Group ID"
-  default = "ocid1.networksecuritygroup.oc1.eu-zurich-1.aaaaaaaaidlhyglsbr6k4rcti6vvxrqaxg2svtxjkzwrfuhhwepwcmb6s7ba"
+  type        = list(string)
+  description = "List of Network Security Group IDs"
+  default     = ["ocid1.networksecuritygroup.oc1.eu-zurich-1.aaaaaaaaidlhyglsbr6k4rcti6vvxrqaxg2svtxjkzwrfuhhwepwcmb6s7ba"]
 }
+
