@@ -85,3 +85,8 @@ variable "plugin_name" {
   description = "Specify the defined tag for compute VM"
 }
 
+variable "nsg_ids" {
+  type = string
+  description = "Network Security Group ID"
+  default = ""
+}
