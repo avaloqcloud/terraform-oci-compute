@@ -21,11 +21,6 @@ variable "cloud_init_script" {
   default = ""
 }
 
- variable "subnet_id" {
-  type = string
-  description = "Subnet ID"
-   
- }
 
 variable "private_ip" {
   type = string

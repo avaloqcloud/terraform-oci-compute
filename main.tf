@@ -19,7 +19,6 @@ resource "oci_core_instance" "compute_instance" {
   }
 
   create_vnic_details {
-    subnet_id       = var.subnet_id
     assign_public_ip = var.assign_public_ip
     private_ip      = var.private_ip
     nsg_ids         = var.nsg_ids
