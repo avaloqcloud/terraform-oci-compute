@@ -88,5 +88,6 @@ variable "plugin_name" {
 variable "nsg_ids" {
   type        = list(string)
   description = "List of Network Security Group IDs"
+  default     = []
 }
 
