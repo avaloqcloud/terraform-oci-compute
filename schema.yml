@@ -31,6 +31,8 @@ variableGroups:
       - cloud_init_script
       - is_plugin_enabled
       - plugin_name
+      - kmsVault
+      - kmsCompartment
       - kms_key_id
 
 variables:
