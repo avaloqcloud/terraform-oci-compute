@@ -35,6 +35,7 @@ resource "oci_core_instance" "compute_instance" {
     source_type                = "image"
     source_id                  = var.instance_image
     boot_volume_size_in_gbs    = var.boot_volume_size_in_gbs
+    kms_key_id                 = var.kms_key_id
   }
 
   metadata = {

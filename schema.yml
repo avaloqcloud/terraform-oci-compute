@@ -31,6 +31,9 @@ variableGroups:
       - cloud_init_script
       - is_plugin_enabled
       - plugin_name
+      - kmsVault
+      - kmsCompartment
+      - kms_key_id
 
 variables:
   #region:
@@ -172,3 +175,25 @@ variables:
   plugin_name: 
     type: string
     visible: ${is_plugin_enabled}
+
+  kmsCompartment:
+    type: oci:identity:compartment:id
+    default: ""
+
+  kmsVault:
+    type: oci:kms:vault:id
+    title: "Vault for KMS Key"
+    description: "vault"
+    default: ""
+    dependsOn:
+      compartmentId: ${kmsCompartment}
+
+  kms_key_id:
+    type: oci:kms:key:id
+    title: "KMS Key"
+    description: "KMS Key"
+    default: ""
+    dependsOn:
+      compartmentId: ${kmsCompartment}
+      vaultId: ${kmsVault}
+
